@@ -9,6 +9,12 @@ namespace TowerDefense
         [SerializeField] private Text m_text;
         [SerializeField] private Button m_button;
         [SerializeField] private Transform m_buildSite;
+
+        public void SetTowerAsset(TowerAsset asset)
+        {
+            m_towerAsset = asset;
+        }
+
         public void SetBuildSite(Transform value)
         {
             m_buildSite = value;

@@ -60,6 +60,8 @@ namespace SpaceShooter
         /// </summary>
         private Rigidbody2D m_rigid;
 
+        private float originalSpeed;
+
         /*private bool shieldInEffect = false;
         private bool speedBoostInEffect = false;
 
@@ -67,7 +69,6 @@ namespace SpaceShooter
         private float shieldTimer;
         private float speedBoostDurationTime;
         private float speedBoostTimer;
-        private float originalLinearVelocity;
         private float originalThrust;*/
 
         #region PublicAPI
@@ -97,7 +98,7 @@ namespace SpaceShooter
 
             m_rigid.inertia = 1;
 
-            //originalLinearVelocity = m_maxLinearVelocity;
+            //originalSpeed = m_maxLinearVelocity;
             //originalThrust = m_thrust;
 
             //InitOffensive();
@@ -170,7 +171,19 @@ namespace SpaceShooter
             SetHitPoints(asset.HitPoints);
             SetScoreValue(asset.ScoreValue);
             m_maxLinearVelocity = asset.MoveSpeed;
+            originalSpeed = m_maxLinearVelocity;
             SetWeaknesses(asset);
+        }
+
+        public void HalfSpeed()
+        {
+            originalSpeed = m_maxLinearVelocity;
+            m_maxLinearVelocity /= 2;
+        }
+
+        public void RestoreSpeed()
+        {
+            m_maxLinearVelocity = originalSpeed;
         }
 
         /*

@@ -8,7 +8,8 @@ namespace TowerDefense
         public enum UpdateSource
         {
             Gold,
-            Life
+            Life,
+            Crystals
         }
 
         public UpdateSource source = UpdateSource.Gold;
@@ -22,6 +23,7 @@ namespace TowerDefense
             {
                 case UpdateSource.Gold: TDPlayer.GoldUpdateSubscribe(UpdateText); break;
                 case UpdateSource.Life: TDPlayer.LifeUpdateSubscribe(UpdateText); break;
+                case UpdateSource.Crystals: TDPlayer.CrystalsUpdateSubscribe(UpdateText); break;
             }
             
         }
@@ -37,6 +39,7 @@ namespace TowerDefense
             {
                 case UpdateSource.Gold: TDPlayer.GoldUpdateUnsubscribe(UpdateText); break;
                 case UpdateSource.Life: TDPlayer.LifeUpdateUnsubscribe(UpdateText); break;
+                case UpdateSource.Crystals: TDPlayer.CrystalsUpdateUnsubscribe(UpdateText); break;
             }
         }
     }

@@ -14,10 +14,13 @@ namespace TowerDefense
         public int TeamdId = 0;
         public float MoveSpeed = 1;
         public int HitPoints = 100;
+        public int ArmorPoints = 0;
+        public Enemy.ArmorType TypeOfArmor = Enemy.ArmorType.Physic;
         public int ScoreValue = 100;
         public float Radius = 0.19f;
         public int Damage = 1;
         public int Gold = 1;
+        public int Crystals = 1;
 
         [Header("Elemental Weaknesses")]
         [Range(0,2)] public float PhysicWeakness;

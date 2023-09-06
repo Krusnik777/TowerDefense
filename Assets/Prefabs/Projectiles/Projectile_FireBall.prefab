@@ -149,8 +149,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_nickname: 
-  m_velocity: 15
+  m_velocity: 10
   m_lifeTime: 2
   m_damage: 10
   m_damageType: 1
   m_impactEffectPrefab: {fileID: 0}
+  m_almightyDamageUpgrade: {fileID: 0}
+  m_upgradeModifier: 1

@@ -18,9 +18,12 @@ MonoBehaviour:
   TeamdId: 0
   MoveSpeed: 1.5
   HitPoints: 60
+  ArmorPoints: 0
+  TypeOfArmor: 0
   ScoreValue: 15
   Radius: 0.24
   Damage: 2
   Gold: 5
+  Crystals: 2
   PhysicWeakness: 0.5
   MagicWeakness: 2

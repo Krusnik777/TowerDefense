@@ -45,9 +45,8 @@ namespace SpaceShooter
                 if (m_damageType == DamageType.Almighty)
                 {
                     var level = Upgrades.GetUpgradeLevel(m_almightyDamageUpgrade);
-                    Debug.Log("DefaultDamage: " + m_damage);
+
                     m_damage += (int)(m_upgradeModifier * level);
-                    Debug.Log("UpgradeLevel: " + level + "; NewDamage: " + m_damage);
                 }
             }
         }
@@ -70,17 +69,7 @@ namespace SpaceShooter
 
             if (hit)
             {
-                Destructible dest = hit.collider.transform.root.GetComponent<Destructible>();
-
-                if (dest != null && dest != m_parent)
-                {
-                    dest.ApplyDamage(this, m_damage);
-
-                    if (byPlayer)
-                    {
-                        Player.Instance.AddScore(dest.ScoreValue);
-                    }
-                }
+                OnHit(hit);
                 OnProjectileLifeEnd(hit.collider, hit.point);
             }
 
@@ -91,7 +80,35 @@ namespace SpaceShooter
             transform.position += new Vector3(step.x, step.y, 0);
         }
 
-        protected void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
+        /*
+        private void OnHit(RaycastHit2D hit)
+        {
+            Destructible dest = hit.collider.transform.root.GetComponent<Destructible>();
+
+            if (dest != null && dest != m_parent)
+            {
+                dest.ApplyDamage(this, m_damage);
+
+                if (byPlayer)
+                {
+                    Player.Instance.AddScore(dest.ScoreValue);
+                }
+            }
+            OnProjectileLifeEnd(hit.collider, hit.point);
+        }*/
+
+        private void OnHit(RaycastHit2D hit)
+        {
+            var enemy = hit.collider.transform.root.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(this, m_damage);
+            }
+            
+        }
+
+            protected void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
         {
             if (m_impactEffectPrefab != null)
             {

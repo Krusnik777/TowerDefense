@@ -18,9 +18,7 @@ namespace TowerDefense
             if (Upgrades.Instance)
             {
                 var level = Upgrades.GetUpgradeLevel(m_towerRadiusUpgrade);
-                var defaultRadius = m_radius;
                 m_radius += m_upgradeModifier*level;
-                if (level > 0) Debug.Log("Change tower radius from default " + defaultRadius + " to " + m_radius);
             }
         }
 
@@ -56,6 +54,22 @@ namespace TowerDefense
                     m_target = enter.transform.root.GetComponent<Destructible>();
                 }
             }
+        }
+
+        public void Use(TowerAsset asset)
+        {
+            var sr = GetComponentInChildren<SpriteRenderer>();
+            sr.sprite = asset.Sprite;
+            sr.color = asset.Color;
+
+            var turrets = GetComponentsInChildren<Turret>();
+            foreach (var turret in turrets)
+            {
+                turret.AssignLoadout(asset.TurretProps);
+            }
+
+            var buildSite = GetComponentInChildren<BuildSite>();
+            buildSite.SetBuildableTowers(asset.m_upgradesTo);
         }
 
 

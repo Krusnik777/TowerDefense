@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GoldCost: 25
   Sprite: {fileID: 21300000, guid: 298636722737c4b41816506cd4bc994f, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
   GUISprite: {fileID: 21300000, guid: 1ff55c4a74fcf9b429b49b787ead3395, type: 3}
   TurretProps: {fileID: 11400000, guid: 2e421a5ae40d9504f8477f5ca69cafb9, type: 2}
   Prefab: {fileID: 7242605698295568190, guid: 7e0bb25febb5f614893f44dd1a64f51a, type: 3}
+  RequiredUpgrade: {fileID: 11400000, guid: a2916b5d24a3d674ea172362e89edc12, type: 2}
+  RequiredUpgradeLevel: 1
+  m_upgradesTo:
+  - {fileID: 11400000, guid: dc25bae1ff08b374d9fe7560736bf0c8, type: 2}

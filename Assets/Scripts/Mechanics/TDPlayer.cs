@@ -7,10 +7,12 @@ namespace TowerDefense
     public class TDPlayer : Player
     {
         [SerializeField] private int m_gold = 0;
+        [SerializeField] private int m_crystalAmount = 0;
         [SerializeField] private UpgradeAsset m_healthUpgrade;
         [SerializeField] private int m_upgradeModifier = 5;
 
         private static event Action<int> EventOnGoldUpdate;
+        private static event Action<int> EventOnCrystalsUpdate;
         public static event Action<int> EventOnLifeUpdate;
 
         private new void Awake()
@@ -35,6 +37,12 @@ namespace TowerDefense
             act(Instance.Lives);
         }
 
+        public static void CrystalsUpdateSubscribe(Action<int> act)
+        {
+            EventOnCrystalsUpdate += act;
+            act(Instance.m_crystalAmount);
+        }
+
         public static void GoldUpdateUnsubscribe(Action<int> act)
         {
             EventOnGoldUpdate -= act;
@@ -43,6 +51,11 @@ namespace TowerDefense
         public static void LifeUpdateUnsubscribe(Action<int> act)
         {
             EventOnLifeUpdate -= act;
+        }
+
+        public static void CrystalsUpdateUnsubscribe(Action<int> act)
+        {
+            EventOnCrystalsUpdate -= act;
         }
 
         public static new TDPlayer Instance { get { return Player.Instance as TDPlayer; } }
@@ -59,20 +72,18 @@ namespace TowerDefense
             EventOnLifeUpdate(Lives);
         }
 
+        public void ChangeCrystalAmount(int change)
+        {
+            m_crystalAmount += change;
+            EventOnCrystalsUpdate(m_crystalAmount);
+        }
+
         public void TryBuild(TowerAsset towerAsset, Transform buildSite)
         {
             ChangeGold(-towerAsset.GoldCost);
 
             var tower = Instantiate(towerAsset.Prefab, buildSite.position, Quaternion.identity);
-            var sr = tower.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = towerAsset.Sprite;
-            sr.color = towerAsset.Color;
-
-            var turrets = tower.GetComponentsInChildren<Turret>();
-            foreach(var turret in turrets)
-            {
-                turret.AssignLoadout(towerAsset.TurretProps);
-            }
+            tower.Use(towerAsset);
 
             Destroy(buildSite.gameObject);
         }

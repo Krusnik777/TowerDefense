@@ -16,7 +16,7 @@ namespace TowerDefense
 
         private float fillStep;
 
-        private void Start()
+        private void Awake()
         {
             manager = FindObjectOfType<EnemyWaveManager>();
 

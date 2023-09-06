@@ -14,7 +14,7 @@ namespace TowerDefense
 
         public void LoadLevel()
         {
-            if (m_episode) LevelSequenceController.Instance?.StartEpisode(m_episode);
+            if (m_episode) LevelSequenceController.Instance.StartEpisode(m_episode);
         }
 
         public void Initialize()

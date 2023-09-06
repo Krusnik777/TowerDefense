@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5bbc2604a70594d8e6b6a9b38fd959, type: 3}
   m_Name: DarkMageTower
   m_EditorClassIdentifier: 
-  GoldCost: 50
+  GoldCost: 35
   Sprite: {fileID: 21300000, guid: 298636722737c4b41816506cd4bc994f, type: 3}
   Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
   GUISprite: {fileID: 21300000, guid: 1ff55c4a74fcf9b429b49b787ead3395, type: 3}
   TurretProps: {fileID: 11400000, guid: 6867373ce56a5224faac4f35920a8ec2, type: 2}
   Prefab: {fileID: 7242605698295568190, guid: 7e0bb25febb5f614893f44dd1a64f51a, type: 3}
+  RequiredUpgrade: {fileID: 11400000, guid: a2916b5d24a3d674ea172362e89edc12, type: 2}
+  RequiredUpgradeLevel: 2
+  m_upgradesTo: []
