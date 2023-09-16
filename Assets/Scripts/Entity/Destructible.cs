@@ -42,6 +42,8 @@ namespace SpaceShooter
         [SerializeField] private int m_teamId;
         public int TeamId => m_teamId;
 
+        [SerializeField] private GameObject m_damagePopupPrefab;
+
         [Header("Elemental Weaknesses")]
         [SerializeField] [Range(0, 2)] private float m_physicWeakness;
         [SerializeField] [Range(0, 2)] private float m_magicWeakness;
@@ -70,13 +72,15 @@ namespace SpaceShooter
         public void ApplyDamage(object sender, int damage)
         {
             if (m_indestrutible) return;
-
+            /*
             if (TryGetComponent(out Boss boss))
             {
                 boss.ApplyBreakDamage(sender, damage);
 
                 if (boss.InBreakState) damage = (int) (damage * boss.DamageBooster);
-            }
+            }*/
+
+            var baseDamage = damage;
 
             if (sender is Projectile projectile)
             {
@@ -88,6 +92,26 @@ namespace SpaceShooter
                 {
                     damage = (int)(damage * m_magicWeakness);
                 }
+            }
+
+            if (m_damagePopupPrefab)
+            {
+                var damagePopup = Instantiate(m_damagePopupPrefab, transform.position, Quaternion.identity);
+                var damageText = damagePopup.GetComponentInChildren<TextMesh>();
+
+                damageText.text = damage.ToString();
+
+                if (damage > baseDamage)
+                {
+                    damageText.color = Color.red;
+                }
+
+                if (damage < baseDamage)
+                {
+                    damageText.color = Color.cyan;
+                }
+
+                Destroy(damagePopup, 1.0f);
             }
 
             m_currentHitPoins -= damage;
@@ -134,6 +158,7 @@ namespace SpaceShooter
         {
             m_eventOnDeath?.Invoke();
 
+            /*
             if (LevelController.Instance != null && LevelController.Instance.GetComponentInChildren<LevelConditionNumberKills>() != null 
                 && LevelController.Instance.GetComponentInChildren<LevelConditionNumberKills>().OnlyByPlayer == false) 
                 CheckSpecificKillsCondition();
@@ -148,12 +173,13 @@ namespace SpaceShooter
                         targetKillsCondition.RemoveTarget();
                     }
                 }
-            }
+            }*/
 
             Destroy(gameObject);
         }
 
-        private void CheckSpecificKillsCondition()
+        
+        /*private void CheckSpecificKillsCondition()
         {
             var specificKillsCondition = LevelController.Instance.GetComponentInChildren<LevelConditionNumberKills>();
             if (specificKillsCondition != null && specificKillsCondition.TargetSpecificTeam)
@@ -163,7 +189,7 @@ namespace SpaceShooter
                     specificKillsCondition.AddTargetKills();
                 }
             }
-        }
+        }*/
 
         private static HashSet<Destructible> m_allDestructibles;
 

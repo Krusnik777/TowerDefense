@@ -1,4 +1,5 @@
-# TowerDefense
+# TowerDefens
+
 Training Project in Tower Defense genre
 
-Work in Progress
+Alpha

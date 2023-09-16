@@ -24,7 +24,22 @@ namespace TowerDefense
             {
                 var position = Camera.main.WorldToScreenPoint(buildSite.transform.root.position);
                 rectTransform.anchoredPosition = position;
-                activeControls = new List<TowerBuyControl>();
+
+                if (activeControls == null)
+                {
+                    activeControls = new List<TowerBuyControl>();
+                }
+
+                if (activeControls != null)
+                {
+                    foreach (var control in activeControls)
+                    {
+                        Destroy(control.gameObject);
+                    }
+                    activeControls.Clear();
+                    activeControls = new List<TowerBuyControl>();
+                }
+
                 foreach (var asset in buildSite.BuildableTowers)
                 {
                     if (asset.IsAvailable)
@@ -52,7 +67,7 @@ namespace TowerDefense
             }
             else
             {
-                if (activeControls != null && activeControls.Count > 0)
+                if (activeControls != null)
                 {
                     foreach (var control in activeControls)
                     {

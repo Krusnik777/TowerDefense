@@ -30,7 +30,8 @@ namespace TowerDefense
                     for (int i = 0; i < count; i++)
                     {
                         var e = Instantiate(m_enemyPrefab, m_paths[pathIndex].StartArea.GetRandomInsideZone(), Quaternion.identity);
-                        e.EventOnEnd += RecordEnemyDead;
+                        e.GetComponent<SpaceShooter.Destructible>().EventOnDeath.AddListener(RecordEnemyDead);
+                        e.GetComponent<TDPatrolController>().EventOnEndPath.AddListener(RecordEnemyDead);
                         e.Use(asset);
                         e.GetComponent<TDPatrolController>().SetPath(m_paths[pathIndex]);
 

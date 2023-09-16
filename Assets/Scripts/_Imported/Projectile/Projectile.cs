@@ -19,6 +19,9 @@ namespace SpaceShooter
         [SerializeField] protected ImpactEffect m_impactEffectPrefab;
         [SerializeField] protected UpgradeAsset m_almightyDamageUpgrade;
         [SerializeField] private float m_upgradeModifier = 5.0f;
+        [Header("Sounds")]
+        [SerializeField] private Sound m_shotSound = Sound.Arrow;
+        [SerializeField] private Sound m_hitSound = Sound.ArrowHit;
 
         protected float timer;
 
@@ -49,6 +52,11 @@ namespace SpaceShooter
                     m_damage += (int)(m_upgradeModifier * level);
                 }
             }
+        }
+
+        private void Start()
+        {
+            m_shotSound.Play();
         }
 
         protected virtual void Update()
@@ -103,6 +111,7 @@ namespace SpaceShooter
 
             if (enemy != null)
             {
+                m_hitSound.Play();
                 enemy.TakeDamage(this, m_damage);
             }
             

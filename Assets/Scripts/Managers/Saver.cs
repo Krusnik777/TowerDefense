@@ -14,7 +14,7 @@ namespace TowerDefense
             var path = FileHandler.Path(filename);
             if (File.Exists(path))
             {
-                Debug.Log($"Loading save from file");
+                //Debug.Log($"Loading save from file");
                 //Debug.Log($"Loading from {path}");
                 var dataString = File.ReadAllText(path);
                 var saver = JsonUtility.FromJson<Saver<T>>(dataString);
@@ -22,7 +22,7 @@ namespace TowerDefense
             }
             else
             {
-                Debug.Log($"Save file not found");
+                //Debug.Log($"Save file not found");
                 //Debug.Log($"No file at {path}");
             }
         }

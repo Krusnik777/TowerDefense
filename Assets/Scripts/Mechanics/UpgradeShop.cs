@@ -6,16 +6,23 @@ namespace TowerDefense
 {
     public class UpgradeShop : MonoBehaviour
     {
-        [SerializeField] private int m_money;
         [SerializeField] private Text m_moneyText;
         [SerializeField] private BuyUpgrade[] m_upgrades;
+
+        private int m_money;
 
         private void Start()
         {
             foreach (var slot in m_upgrades)
             {
                 slot.Initialize();
-                slot.GetComponentInChildren<Button>().onClick.AddListener(UpdateMoney);
+
+                var buttons = slot.GetComponentsInChildren<Button>();
+
+                foreach (var button in buttons)
+                {
+                    button.onClick.AddListener(UpdateMoney);
+                }
             }
             UpdateMoney();
         }
@@ -24,7 +31,12 @@ namespace TowerDefense
         {
             foreach (var slot in m_upgrades)
             {
-                slot.GetComponentInChildren<Button>().onClick.RemoveListener(UpdateMoney);
+                var buttons = slot.GetComponentsInChildren<Button>();
+
+                foreach (var button in buttons)
+                {
+                    button.onClick.RemoveListener(UpdateMoney);
+                }
             }
         }
 

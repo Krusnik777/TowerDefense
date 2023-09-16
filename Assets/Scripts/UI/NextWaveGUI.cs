@@ -65,6 +65,9 @@ namespace TowerDefense
             manager.ForceNextWave();
         }
 
-        
+        public void TurnOffButton()
+        {
+            button.interactable = false;
+        }
     }
 }

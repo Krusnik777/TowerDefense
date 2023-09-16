@@ -10,6 +10,10 @@ namespace TowerDefense
 
         private void Start()
         {
+            var timerGUI = FindObjectOfType<TimerPanelGUI>();
+
+            if (timerGUI) timerGUI.StartTimerPanel(this);
+
             m_finishTime += Time.time;
         }
 

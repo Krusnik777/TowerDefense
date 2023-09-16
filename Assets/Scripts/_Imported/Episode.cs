@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace SpaceShooter
 {
@@ -16,5 +19,20 @@ namespace SpaceShooter
 
         [SerializeField] private Sprite m_previewImage;
         public Sprite PreviewImage => m_previewImage;
+
+        public string BriefingText = "Briefing Text Here";
     }
+
+    #if UNITY_EDITOR
+    [CustomEditor(typeof(Episode))]
+    public class EpisodeTextInspector : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            var t = (Episode)target;
+            t.BriefingText = GUILayout.TextArea(t.BriefingText, 1000);
+        }
+    }
+    #endif
 }

@@ -42,14 +42,17 @@ namespace TowerDefense
             TDPlayer.EventOnLifeUpdate += LifeScoreChange;
         }
 
-        private void StopLevelActivity()
+        public void StopLevelActivity()
         {
-            foreach(var dest in Destructible.AllDestructibles)
+            if (Destructible.AllDestructibles != null)
             {
-                if (dest.TryGetComponent(out Enemy enemy))
+                foreach (var dest in Destructible.AllDestructibles)
                 {
-                    enemy.GetComponent<SpaceShip>().enabled = false;
-                    enemy.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                    if (dest.TryGetComponent(out Enemy enemy))
+                    {
+                        enemy.GetComponent<SpaceShip>().enabled = false;
+                        enemy.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                    }
                 }
             }
 
@@ -62,9 +65,16 @@ namespace TowerDefense
             }
 
             DisableAll<Spawner>();
+            DisableAll<EnemyWaveManager>();
+            DisableAll<EnemyWave>();
             DisableAll<Projectile>();
             DisableAll<Tower>();
             DisableAll<NextWaveGUI>();
+            DisableAll<TowerBuyControl>();
+
+            FindObjectOfType<ClickProtection>().gameObject.SetActive(false);
+            DisableAll<Abilities>();
+
         }
     }
 }

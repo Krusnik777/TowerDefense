@@ -12,15 +12,36 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelMap.unity
     guid: 0fff66028425f414eaea853629f19a95
   - enabled: 1
-    path: Assets/Scenes/Level_1 (Sample).unity
+    path: Assets/Scenes/Briefing.unity
+    guid: 951f86d002a89b944a6fa251736db41b
+  - enabled: 1
+    path: Assets/Scenes/Level_1/Level_1.unity
     guid: bcb6b87ad1c54344ebd83828df8785f9
   - enabled: 1
-    path: Assets/Scenes/Level_2 (Sample).unity
-    guid: e779ff18193e3cf4c8177b115f4a78eb
+    path: Assets/Scenes/Level_1/Level_1-2.unity
+    guid: 0e692a5daf213584ebb994f62d7827e7
   - enabled: 1
-    path: Assets/Scenes/Levels/Level_1.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Level_1/Level_1-3.unity
+    guid: f3f3d491669acd849b314e7d0f527df2
   - enabled: 1
-    path: Assets/Scenes/Levels/Scene_02.unity
-    guid: e80467cae29788e4d949b78b5fb31dbb
+    path: Assets/Scenes/Level_2/Level_2.unity
+    guid: b2fd32198c5fcf5408790015f94492cf
+  - enabled: 1
+    path: Assets/Scenes/Level_2/Level_2-2.unity
+    guid: 5d7c000756c4ec34f834bebaec824565
+  - enabled: 1
+    path: Assets/Scenes/Level_2/Level_2-3.unity
+    guid: f93c0b40c24a7c54da8a8af3f107a367
+  - enabled: 1
+    path: Assets/Scenes/Level_3/Level_3.unity
+    guid: e50b24653ac3e8b4490b2e5664681423
+  - enabled: 1
+    path: Assets/Scenes/Level_3/Level_3-2.unity
+    guid: ee75f8513a6c7ca4f9b9a2da1a824196
+  - enabled: 1
+    path: Assets/Scenes/Level_3/Level_3-3.unity
+    guid: 42c04e06cab5db645b8f33f13a33504e
+  - enabled: 1
+    path: Assets/Scenes/CampaignWin.unity
+    guid: 31f1c36664f90384f86d9ecc88bb05ef
   m_configObjects: {}

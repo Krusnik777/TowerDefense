@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eaad630a08f2044bbd528be7430cbc1, type: 3}
+  m_Name: Episode_02-3
+  m_EditorClassIdentifier: 
+  m_episodeName: FROGGERS' REVENGE!
+  m_levels:
+  - Briefing
+  - Level_2-3
+  m_levelsBGM: []
+  m_previewImage: {fileID: 0}
+  BriefingText: 'Your Majesty!
+
+    The froggers continue their ferocious attacks.
+    Now they are especially daring and attacked an important advanced trading post!
+
+    We
+    can''t leave it like that!
+
+    The froggers will try to overwhelm us with numbers,
+    but if we <color=green><b>hold out for a while</b></color>, we will definitely
+    interrupt their atrocities!'

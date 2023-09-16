@@ -10,8 +10,9 @@ namespace TowerDefense
         [SerializeField] private UpgradeAsset m_towerRadiusUpgrade;
         [SerializeField] private float m_upgradeModifier = 1.0f;
 
+        //private float m_leadPrediction = 0.25f;
         private Turret[] m_turrets;
-        private Destructible m_target = null;
+        private Rigidbody2D m_target = null;
 
         private void Awake()
         {
@@ -31,13 +32,12 @@ namespace TowerDefense
         {
             if (m_target)
             {
-                Vector2 targetVector = m_target.transform.position - transform.position;
-
-                if (targetVector.magnitude < m_radius)
+                if (Vector3.Distance(m_target.transform.position, transform.position) <= m_radius)
                 {
                     foreach (var turret in m_turrets)
                     {
-                        turret.transform.up = targetVector;
+                        turret.transform.up = m_target.transform.position - turret.transform.position;
+                        //turret.transform.up = m_target.transform.position - turret.transform.position + (Vector3) m_target.velocity * m_leadPrediction;
                         turret.Fire();
                     }
                 }
@@ -51,7 +51,7 @@ namespace TowerDefense
                 var enter = Physics2D.OverlapCircle(transform.position, m_radius);
                 if (enter)
                 {
-                    m_target = enter.transform.root.GetComponent<Destructible>();
+                    m_target = enter.transform.root.GetComponent<Rigidbody2D>();
                 }
             }
         }

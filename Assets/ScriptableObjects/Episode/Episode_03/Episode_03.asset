@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eaad630a08f2044bbd528be7430cbc1, type: 3}
+  m_Name: Episode_03
+  m_EditorClassIdentifier: 
+  m_episodeName: UNDEAD STRIKE!
+  m_levels:
+  - Briefing
+  - Level_3
+  - CampaignWin
+  m_levelsBGM: []
+  m_previewImage: {fileID: 0}
+  BriefingText: 'Your Majesty!
+
+    A certain necromancer conducted forbidden research,
+    and during his another experiment awakened undead legions. He could not control
+    them and fell victim to his own actions, but now the undead are marching on the
+    capital!
+
+    We must stop their indomitable march!
+
+    Just remember that
+    the undead are <color=grey><i>resistant to physical damage</i></color>.
+
+    To
+    thin out their ranks, it is enough to <color=green><b>survive a few enemy waves</b></color>.'

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eaad630a08f2044bbd528be7430cbc1, type: 3}
+  m_Name: Episode_01
+  m_EditorClassIdentifier: 
+  m_episodeName: BAD KNIGHTS STRIKE!
+  m_levels:
+  - Briefing
+  - Level_1
+  m_levelsBGM: []
+  m_previewImage: {fileID: 0}
+  BriefingText: 'Your Majesty!
+
+    We were attacked by an unknown party. The borders
+    of our state are besieged by knights. We must fight them back!
+
+    Fortunately
+    our scouts were able to find out that so far the enemy is attacking with small
+    forces, but we are obliged to interrupt their onslaught while it is in its infancy.
+
+    We
+    only need to <color=green><b>last a few enemy waves</b></color> to win.'

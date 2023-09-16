@@ -24,7 +24,7 @@ namespace SpaceShooter
         {
             //gameObject.SetActive(false);
             m_panelSuccess.GetComponentInChildren<Button>().onClick.AddListener(OnButtonAdvanceLevel);
-            m_returnButton.onClick.AddListener(OnButtonAdvanceLevel);
+            m_returnButton.onClick.AddListener(OnButtonReturn);
             m_restartButton.onClick.AddListener(OnButtonRestartLevel);
 
             m_panelSuccess.SetActive(false);
@@ -35,7 +35,7 @@ namespace SpaceShooter
         private void OnDestroy()
         {
             m_panelSuccess.GetComponentInChildren<Button>().onClick.RemoveListener(OnButtonAdvanceLevel);
-            m_returnButton.onClick.RemoveListener(OnButtonAdvanceLevel);
+            m_returnButton.onClick.RemoveListener(OnButtonReturn);
             m_restartButton.onClick.RemoveListener(OnButtonRestartLevel);
         }
 
@@ -43,8 +43,8 @@ namespace SpaceShooter
         {
             //gameObject.SetActive(true);
 
-            m_panelSuccess?.gameObject.SetActive(result);
-            m_panelFailure?.gameObject.SetActive(!result);
+            m_panelSuccess.SetActive(result);
+            m_panelFailure.SetActive(!result);
 
             m_panelScore?.SetActive(true);
 
@@ -62,6 +62,9 @@ namespace SpaceShooter
 
         public void OnButtonRestartLevel()
         {
+            if (!m_panelSuccess.activeInHierarchy || !m_panelFailure.activeInHierarchy)
+                TDLevelController.Instance.StopLevelActivity();
+
             LevelSequenceController.Instance.RestartLevel();
         }
 
@@ -70,6 +73,21 @@ namespace SpaceShooter
             LevelSequenceController.Instance.AdvanceLevel();
         }
 
+        public void OnButtonReturn()
+        {
+            if (!m_panelSuccess.activeInHierarchy || !m_panelFailure.activeInHierarchy)
+                TDLevelController.Instance.StopLevelActivity();
+
+            LevelSequenceController.Instance.ReturnToLevelMap();
+        }
+
+        public void OnButtonExit()
+        {
+            if (!m_panelSuccess.activeInHierarchy || !m_panelFailure.activeInHierarchy)
+                TDLevelController.Instance.StopLevelActivity();
+
+            Application.Quit();
+        }
         
     }
 }

@@ -43,8 +43,9 @@ namespace TowerDefense
         [SerializeField] private ArmorType m_armorType;
         [SerializeField] private int m_droppedGold = 1;
         [SerializeField] private int m_droppedCrystals = 1;
+        [SerializeField] private GameObject m_dropPopupPrefab;
 
-        public event Action EventOnEnd;
+        //public event Action EventOnEnd;
 
         private TDPatrolController AIController;
         private Destructible destructible;
@@ -57,6 +58,15 @@ namespace TowerDefense
             destructible = GetComponent<Destructible>();
             destructible.EventOnDeath.AddListener(GiveGoldToPlayer);
             destructible.EventOnDeath.AddListener(GiveCrystalsToPlayer);
+        }
+
+        private void OnDestroy()
+        {
+            AIController.EventOnEndPath.RemoveListener(DamagePlayer);
+            destructible.EventOnDeath.RemoveListener(GiveGoldToPlayer);
+            destructible.EventOnDeath.RemoveListener(GiveCrystalsToPlayer);
+
+            //EventOnEnd?.Invoke();
         }
 
         public void Use(EnemyAsset asset)
@@ -102,14 +112,19 @@ namespace TowerDefense
             destructible.ApplyDamage(sender, ArmorDamageFunctions[(int)m_armorType](damage, damageType, m_armor));
         }
 
-
-        private void OnDestroy()
+        public void SpawnPopups()
         {
-            AIController.EventOnEndPath.RemoveListener(DamagePlayer);
-            destructible.EventOnDeath.RemoveListener(GiveGoldToPlayer);
-            destructible.EventOnDeath.RemoveListener(GiveCrystalsToPlayer);
+            if (m_dropPopupPrefab)
+            {
+                var pos = transform.position;
+                pos.x -= 0.5f;
+                pos.y += 0.25f;
 
-            EventOnEnd?.Invoke();
+                var dropPopup = Instantiate(m_dropPopupPrefab, pos, Quaternion.identity);
+                dropPopup.GetComponent<DropPopup>().SetupPopup(m_droppedGold, m_droppedCrystals);
+
+                Destroy(dropPopup, 1.0f);
+            }
         }
     }
 

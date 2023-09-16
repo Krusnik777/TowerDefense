@@ -52,7 +52,15 @@ namespace TowerDefense
         private void NewGame()
         {
             FileHandler.Reset(MapCompletion.Filename);
-            if (FileHandler.TryGetFile(Upgrades.Filename)) FileHandler.Reset(Upgrades.Filename);
+            FileHandler.Reset(Upgrades.Filename);
+
+            if (MapCompletion.Instance)
+            {
+                var completionData = FindAnyObjectByType<MapCompletion>();
+
+                if (completionData) Destroy(completionData.gameObject);
+            }
+
             SceneManager.LoadScene(1);
         }
         private void Continue()

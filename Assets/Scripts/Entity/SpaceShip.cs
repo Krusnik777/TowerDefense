@@ -38,6 +38,7 @@ namespace SpaceShooter
         public Sprite PreviewImage => m_previewImage;
 
         [SerializeField] private GameObject m_explosionPrefab;
+        [SerializeField] private GameObject m_debuffAnimation;
 
         [SerializeField] private Turret[] m_turrets;
 
@@ -45,15 +46,15 @@ namespace SpaceShooter
         [SerializeField] private int m_maxAmmo;
         [SerializeField] private int m_energyRegenPerSecond;
 
-        [Header("Bars")]
+        /*[Header("Bars")]
         [SerializeField] private SpriteFillBar m_invincibilityBar;
-        [SerializeField] private SpriteFillBar m_speedBoostBar;
+        [SerializeField] private SpriteFillBar m_speedBoostBar;*/
 
-        private float m_primaryEnergy;
+        /*private float m_primaryEnergy;
         public float PrimaryEnergy => m_primaryEnergy;
 
         private int m_secondaryAmmo;
-        public int SecondaryAmmo => m_secondaryAmmo;
+        public int SecondaryAmmo => m_secondaryAmmo;*/
 
         /// <summary>
         /// Saved reference to rigid
@@ -141,6 +142,11 @@ namespace SpaceShooter
                 Destroy(explosion, 1);
             }
 
+            if (TryGetComponent(out TowerDefense.Enemy enemy))
+            {
+                enemy.SpawnPopups();
+            }
+
             base.OnDeath();
         }
 
@@ -179,11 +185,15 @@ namespace SpaceShooter
         {
             originalSpeed = m_maxLinearVelocity;
             m_maxLinearVelocity /= 2;
+
+            m_debuffAnimation.SetActive(true);
         }
 
         public void RestoreSpeed()
         {
             m_maxLinearVelocity = originalSpeed;
+
+            m_debuffAnimation.SetActive(false);
         }
 
         /*

@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using SpaceShooter;
 
 namespace TowerDefense
 {
@@ -9,7 +9,7 @@ namespace TowerDefense
         public const string Filename = "Upgrades.dat";
 
         [Serializable]
-        private class UpgradeSave
+        public class UpgradeSave
         {
             public UpgradeAsset Asset;
             public int Level = 0;
@@ -61,5 +61,21 @@ namespace TowerDefense
             }
             return 0;
         }
+
+        public static List<UpgradeSave> GetActiveUpgrades()
+        {
+            var upgrades = new List<UpgradeSave>();
+
+            foreach (var upgrade in Instance.m_saves)
+            {
+                if (upgrade.Asset.Type == UpgradeAsset.UpgradeType.Passive && upgrade.Level > 0)
+                {
+                    upgrades.Add(upgrade);
+                }
+            }
+
+            return upgrades;
+        }
+
     }
 }

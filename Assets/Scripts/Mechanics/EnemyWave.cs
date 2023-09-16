@@ -27,10 +27,13 @@ namespace TowerDefense
 
         private event Action eventOnWaveReady;
 
+        private float savedTime;
+
         public float GetRemainingTime() { return m_prepareTime - Time.time; }
 
         private void Awake()
         {
+            savedTime = m_prepareTime;
             enabled = false;
         }
 
@@ -45,6 +48,7 @@ namespace TowerDefense
 
         public void Prepare(Action spawnEnemies)
         {
+            if (m_prepareTime != savedTime) m_prepareTime = savedTime;
             EventOnWavePrepare?.Invoke(m_prepareTime);
             m_prepareTime += Time.time;
             enabled = true;

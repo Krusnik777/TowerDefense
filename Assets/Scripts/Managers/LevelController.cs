@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using TowerDefense;
 
 namespace SpaceShooter
 {
@@ -58,6 +59,26 @@ namespace SpaceShooter
 
                 LevelSequenceController.Instance?.FinishCurrentLevel(true);
             }
+        }
+
+        public bool TryGetActiveLevelConditionTime(out LevelConditionTime levelConditionTime)
+        {
+            foreach (var v in m_conditions)
+            {
+                if (v is LevelConditionTime)
+                {
+                    levelConditionTime = (LevelConditionTime)v;
+
+                    if (levelConditionTime.gameObject.activeInHierarchy)
+                    {
+                        return true;
+                    }
+                    else return false;   
+                }
+            }
+
+            levelConditionTime = null;
+            return false;
         }
 
     }

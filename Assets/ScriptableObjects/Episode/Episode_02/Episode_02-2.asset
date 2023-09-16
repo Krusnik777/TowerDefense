@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eaad630a08f2044bbd528be7430cbc1, type: 3}
+  m_Name: Episode_02-2
+  m_EditorClassIdentifier: 
+  m_episodeName: FROGGERS STRIKE AGAIN!
+  m_levels:
+  - Briefing
+  - Level_2-2
+  m_levelsBGM: []
+  m_previewImage: {fileID: 0}
+  BriefingText: 'Your Majesty!
+
+    The food supplies are safe, but now froggers
+    have began to attack settlements and prey on residents.
+
+    We must send support
+    to protect your subjects!
+
+    It is worth preparing for a serious enemy onslaught
+    as froggers behave in an unnaturally aggressive manner.
+
+    While the construction
+    of defense structures is underway it is necessary to <color=green><b>withstand
+    few enemy waves</b></color>.'
