@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5bbc2604a70594d8e6b6a9b38fd959, type: 3}
   m_Name: FastArcherTower
   m_EditorClassIdentifier: 
-  GoldCost: 30
+  GoldCost: 25
   Sprite: {fileID: 21300000, guid: 0d1dc428e29b59d4da665429794be749, type: 3}
   Color: {r: 0.7830189, g: 0.65437293, b: 0.2770114, a: 1}
   GUISprite: {fileID: 21300000, guid: ef25b92a8e4b2644b8420de820e6c11f, type: 3}
   TurretProps: {fileID: 11400000, guid: 7d2184568065df04691f1bce18408423, type: 2}
   Prefab: {fileID: 7242605698295568190, guid: 7e0bb25febb5f614893f44dd1a64f51a, type: 3}
+  RequiredUpgrade: {fileID: 11400000, guid: 9bd223434ff6add4eaf0a265180e679e, type: 2}
+  RequiredUpgradeLevel: 1
+  m_upgradesTo: []

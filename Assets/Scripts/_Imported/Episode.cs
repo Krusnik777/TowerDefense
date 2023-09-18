@@ -14,6 +14,9 @@ namespace SpaceShooter
         [SerializeField] private string[] m_levels;
         public string[] Levels => m_levels;
 
+        [SerializeField] private bool m_hasFinalScene;
+        public bool HasFinalScene => m_hasFinalScene;
+
         [SerializeField] private AudioClip[] m_levelsBGM;
         public AudioClip[] LevelsBGM => m_levelsBGM;
 

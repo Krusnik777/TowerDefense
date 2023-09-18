@@ -15,7 +15,9 @@ namespace TowerDefense
         LevelBGM = 10,
         EndGameBGM = 11,
         FireAbility = 12,
-        SlowAbility = 13
+        SlowAbility = 13,
+        Level2BGM = 14,
+        Level3BGM = 15
     }
 
     public static class SoundExtensions

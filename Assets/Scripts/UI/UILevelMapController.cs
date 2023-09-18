@@ -28,17 +28,26 @@ namespace TowerDefense
 
         private void OnExitButton()
         {
-            Application.Quit();
+            SceneController.Instance.QuitGame();
         }
 
         private void OnMainMenuButton()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+            SceneController.Instance.LoadMainMenu();
         }
 
         private void OnUpgradeShipButton()
         {
             m_upgradeShopPanel.SetActive(!m_upgradeShopPanel.activeInHierarchy);
+
+            if (m_upgradeShopPanel.activeInHierarchy)
+            {
+                m_upgradeShopButton.GetComponentInChildren<Text>().text = "Close";
+            }
+            else
+            {
+                m_upgradeShopButton.GetComponentInChildren<Text>().text = "Upgrades";
+            }
         }
 
     }

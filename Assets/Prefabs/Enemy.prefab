@@ -516,7 +516,7 @@ MonoBehaviour:
   m_leadPredictionTime: 0
   m_shootDelay: 0
   m_shootRange: 0
-  m_evadeRayLength: 0
+  m_evadeRayLength: 2
   m_eventOnEndPath:
     m_PersistentCalls:
       m_Calls:

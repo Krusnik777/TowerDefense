@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace TowerDefense
@@ -61,18 +60,19 @@ namespace TowerDefense
                 if (completionData) Destroy(completionData.gameObject);
             }
 
-            SceneManager.LoadScene(1);
+            SceneController.Instance.LoadLevelMap();
         }
         private void Continue()
         {
-            SceneManager.LoadScene(1);
+            SceneController.Instance.LoadLevelMap();
         }
         private void Quit()
         {
-            Application.Quit();
+            SceneController.Instance.QuitGame();
+            //Application.Quit();
         }
 
-        private  void CloseConfirmPanel()
+        private void CloseConfirmPanel()
         {
             m_confirmPanel.SetActive(false);
         }

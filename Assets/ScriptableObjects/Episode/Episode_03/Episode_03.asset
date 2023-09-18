@@ -17,6 +17,7 @@ MonoBehaviour:
   - Briefing
   - Level_3
   - CampaignWin
+  m_hasFinalScene: 1
   m_levelsBGM: []
   m_previewImage: {fileID: 0}
   BriefingText: 'Your Majesty!
@@ -28,8 +29,8 @@ MonoBehaviour:
 
     We must stop their indomitable march!
 
-    Just remember that
-    the undead are <color=grey><i>resistant to physical damage</i></color>.
+    Just remember that the
+    undead are <color=grey><i>resistant to physical damage</i></color>.
 
-    To
-    thin out their ranks, it is enough to <color=green><b>survive a few enemy waves</b></color>.'
+    To thin
+    out their ranks, it is enough to <color=green><b>survive a few enemy waves</b></color>.'

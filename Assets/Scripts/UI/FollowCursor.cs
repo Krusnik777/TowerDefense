@@ -6,7 +6,7 @@ namespace TowerDefense
     {
         [SerializeField] private Canvas m_parentCanvas;
 
-        public void Start()
+        private void OnEnable()
         {
             Vector2 pos;
 

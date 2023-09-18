@@ -15,7 +15,16 @@ namespace TowerDefense
             public int Score;
         }
 
-        [SerializeField] private EpisodeScore[] m_completionData;
+        [Serializable]
+        private class CompletionData
+        {
+            public EpisodeScore[] EpisodeScores;
+            public bool CompletedMainStory;
+        }
+
+        [SerializeField] private CompletionData m_completionData;
+
+        public bool SeenFinalScene => m_completionData.CompletedMainStory;
 
         private int totalScore;
         public int TotalScore => totalScore;
@@ -23,7 +32,7 @@ namespace TowerDefense
         private new void Awake()
         {
             base.Awake();
-            Saver<EpisodeScore[]>.TryLoad(Filename, ref m_completionData);
+            Saver<CompletionData>.TryLoad(Filename, ref m_completionData);
             UpdateTotalScore();
         }
 
@@ -31,7 +40,7 @@ namespace TowerDefense
         {
             totalScore = 0;
 
-            foreach (var episodeScore in m_completionData)
+            foreach(var episodeScore in m_completionData.EpisodeScores)
             {
                 totalScore += episodeScore.Score;
             }
@@ -47,14 +56,14 @@ namespace TowerDefense
 
         private void SaveResult(Episode currentEpisode, int levelScore)
         {
-            foreach (var item in m_completionData)
+            foreach (var item in m_completionData.EpisodeScores)
             {
                 if (item.Episode == currentEpisode)
                 {
                     if (levelScore > item.Score)
                     {
                         item.Score = levelScore;
-                        Saver<EpisodeScore[]>.Save(Filename, m_completionData);
+                        Saver<CompletionData>.Save(Filename, m_completionData);
                         UpdateTotalScore();
                     }
                 }
@@ -63,11 +72,18 @@ namespace TowerDefense
 
         public int GetEpisodeScore(Episode episode)
         {
-            foreach(var data in m_completionData)
+            foreach(var data in m_completionData.EpisodeScores)
             {
                 if (data.Episode == episode) return data.Score;
             }
+
             return 0;
+        }
+
+        public void SaveSeenFinalScene()
+        {
+            m_completionData.CompletedMainStory = true;
+            Saver<CompletionData>.Save(Filename, m_completionData);
         }
     }
 }

@@ -1,10 +1,11 @@
 using UnityEngine.SceneManagement;
+using TowerDefense;
 
 namespace SpaceShooter
 {
     public class LevelSequenceController : SingletonBase<LevelSequenceController>
     {
-        public static string LevelMapSceneNickname = "LevelMap";
+        //public static string LevelMapSceneNickname = "LevelMap";
 
         public Episode CurrentEpisode { get; private set; }
 
@@ -24,12 +25,14 @@ namespace SpaceShooter
             //LevelStatistics = new PlayerStatistics();
             //LevelStatistics.Reset();
 
-            SceneManager.LoadScene(episode.Levels[CurrentLevel]);
+            SceneController.Instance.LoadSceneWithFade(episode.Levels[CurrentLevel]);
+            //SceneManager.LoadScene(episode.Levels[CurrentLevel]);
         }
 
         public void RestartLevel()
         {
             //SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -50,17 +53,26 @@ namespace SpaceShooter
 
             if (CurrentEpisode.Levels.Length <= CurrentLevel)
             {
-                SceneManager.LoadScene(LevelMapSceneNickname);
+                ReturnToLevelMap();
             }
             else
             {
-                SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+                if (CurrentEpisode.HasFinalScene && CurrentLevel + 1 >= CurrentEpisode.Levels.Length && TowerDefense.MapCompletion.Instance.SeenFinalScene)
+                {
+                    ReturnToLevelMap();
+                }
+                else
+                {
+                    SceneController.Instance.LoadSceneWithFade(CurrentEpisode.Levels[CurrentLevel]);
+                    //SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
+                } 
             }
         }
 
         public void ReturnToLevelMap()
         {
-            SceneManager.LoadScene(LevelMapSceneNickname);
+            SceneController.Instance.LoadLevelMap();
+            //SceneManager.LoadScene(LevelMapSceneNickname);
         }
         /*
         private void CalculateLevelStatistics()

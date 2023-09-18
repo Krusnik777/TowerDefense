@@ -86,7 +86,7 @@ namespace SpaceShooter
             if (!m_panelSuccess.activeInHierarchy || !m_panelFailure.activeInHierarchy)
                 TDLevelController.Instance.StopLevelActivity();
 
-            Application.Quit();
+            SceneController.Instance.QuitGame();
         }
         
     }
