@@ -72,7 +72,13 @@ namespace TowerDefense
             DisableAll<NextWaveGUI>();
             DisableAll<TowerBuyControl>();
 
-            FindObjectOfType<ClickProtection>().gameObject.SetActive(false);
+
+            var clickProtection = FindObjectOfType<ClickProtection>();
+            if (clickProtection)
+            {
+                clickProtection.gameObject.SetActive(false);
+            }
+
             DisableAll<Abilities>();
 
         }

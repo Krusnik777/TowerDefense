@@ -62,6 +62,11 @@ namespace TowerDefense
             LoadSceneWithFade(LevelMapSceneNickname);
         }
 
+        public void RestartLevel()
+        {
+            LoadSceneWithFade(SceneManager.GetActiveScene().name);
+        }
+
         public void QuitGame()
         {
             levelName = null;
