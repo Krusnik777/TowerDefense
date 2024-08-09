@@ -12,7 +12,7 @@ namespace TowerDefense
     {
         [SerializeField] private AudioClip[] m_sounds = new AudioClip[Enum.GetNames(typeof(Sound)).Length];
         public AudioClip this[Sound s] => m_sounds[(int)s];
-        /*
+        
         #if UNITY_EDITOR
         [CustomEditor(typeof(Sounds))]
         public class SoundsInspector : Editor
@@ -33,8 +33,15 @@ namespace TowerDefense
                     target.m_sounds[i] = EditorGUILayout.ObjectField($"{(Sound)i} ({i}):",
                         target.m_sounds[i],typeof(AudioClip), false) as AudioClip;
                 }
+
+                if (GUI.changed)
+                {
+                    EditorUtility.SetDirty(target);
+                }
+
+                AssetDatabase.SaveAssets();
             }
         }
-        #endif*/
+        #endif
     }
 }
